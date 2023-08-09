@@ -25,25 +25,7 @@ function Visor() {
   const [selectedOrganizerDetails, setSelectedOrganizerDetails] = useState([]);
   const [currentPage, setCurrentPage] = useState(1)
   const [selectedOrganizerForSelectedItems, setSelectedOrganizerForSelectedItems] = useState("");
-  const [modalAgregarOrganizador, setModalAgregarOrganizador] = useState(false);
-  const [newOrganizer, setNewOrganizer] = useState("");
   const [organizersList, setOrganizersList] = useState([]);
-
-
-  const agregarNuevoOrganizador = () => {
-    if (newOrganizer.trim() !== "") {
-      setOrganizersList([...organizersList, newOrganizer]);
-      setNewOrganizer("");
-      toggleModalAgregarOrganizador();
-    }
-  };
-
- 
-  
-  const toggleModalAgregarOrganizador = () => {
-    setModalAgregarOrganizador(!modalAgregarOrganizador);
-  };
-  
 
   const assignOrganizerToSelectedItems = () => {
     const updatedData = data.map((framework) => {
@@ -176,7 +158,7 @@ function Visor() {
       (framework) =>
         `Nombre: ${framework.nombre}\n` +
         `Telefono: ${framework.telefono}\n` +
-        `Email: ${framework.email}\n` +
+        `Localidad: ${framework.email}\n` +
         `Red Social: ${framework.redSocial}\n` +
         `Fecha: ${framework.fecha}`
     );
@@ -211,19 +193,11 @@ function Visor() {
     <div style={{ textAlign: "center" }}>
       <br />
       <button
-  className="btn btn-warning"
-  onClick={toggleModalAgregarOrganizador}
-  style={{ marginRight: '10px',marginBottom: "10px" }}
->
-  Agregar Organizador
-</button>
-
-      <button
-        className="btn btn-outline-warning"
+        className="btn btn-warning"
         style={{ marginRight: "10px", marginBottom: "10px" }}
         onClick={abrirCerrarModalInsertar}
       >
-        Insertar Form
+        Nuevo Prospecto
       </button>
       <button
         className="btn btn-dark"
@@ -231,11 +205,11 @@ function Visor() {
         disabled={selectedItems.length === 0}
         style={{ marginLeft: "10px", marginBottom: "10px" }}
       >
-        Compartir seleccionados via WhatsApp
+        Compartir seleccionados (WhatsApp)
       </button>
       <Link style={{ textDecoration: "none" }} to="/">
         <button className="btn btn-warning" style={{ marginLeft: "10px", marginBottom: "10px" }}>
-          Logout
+          Salir
         </button>
       </Link>
       <br />
@@ -273,9 +247,6 @@ function Visor() {
     Asignar Organizador a Seleccionados
   </button>
 </div>
-
-
-
   <div className="pagination">
     <button
       style={{ marginLeft: "10px" }}
@@ -302,8 +273,6 @@ function Visor() {
     </button>
   </div>
 </div>
-
-
       <br />
       <br/>
       <table className="table table-striped">
@@ -312,7 +281,7 @@ function Visor() {
             <th>Seleccion</th>
             <th>Nombre</th>
             <th>Telefono</th>
-            <th>Email</th>
+            <th>Localidad</th>
             <th>Red Social</th>
             <th>Fecha</th>
             <th>Organizador</th>
@@ -397,29 +366,8 @@ function Visor() {
           )}
         </tbody>
       </table>
-      <Modal isOpen={modalAgregarOrganizador} toggle={toggleModalAgregarOrganizador}>
-  <ModalHeader>Agregar Organizador</ModalHeader>
-  <ModalBody>
-    <label>Nuevo Organizador:</label>
-    <input
-      type="text"
-      className="form-control"
-      value={newOrganizer}
-      onChange={(e) => setNewOrganizer(e.target.value)}
-    />
-  </ModalBody>
-  <ModalFooter>
-    <button className="btn btn-success" onClick={agregarNuevoOrganizador}>
-      Agregar
-    </button>
-    <button className="btn btn-secondary" onClick={toggleModalAgregarOrganizador}>
-      Cancelar
-    </button>
-  </ModalFooter>
-</Modal>
-
       <Modal isOpen={modalInsertar}>
-        <ModalHeader>Insertar Form</ModalHeader>
+        <ModalHeader>Agregar Prospecto</ModalHeader>
         <ModalBody>
           <div className="form-group">
             <label>Nombre: </label>
@@ -440,7 +388,7 @@ function Visor() {
               onChange={handleChange}
             />
             <br />
-            <label>Email: </label>
+            <label>Localidad: </label>
             <br />
             <input
               type="text"
@@ -465,6 +413,7 @@ function Visor() {
               className="form-control"
               name="fecha"
               onChange={handleChange}
+              placeholder={new Date().toLocaleDateString()}
             />
             <br />
             
@@ -486,7 +435,7 @@ function Visor() {
       </Modal>
 
       <Modal isOpen={modalEditar}>
-        <ModalHeader>Editar Form</ModalHeader>
+        <ModalHeader>Editar Datos</ModalHeader>
         <ModalBody>
           <div className="form-group">
             <label>Nombre: </label>
@@ -509,7 +458,7 @@ function Visor() {
               value={frameworkSeleccionado && frameworkSeleccionado.lanzamiento}
             />
             <br />
-            <label>Email: </label>
+            <label>Localidad: </label>
             <br />
             <input
               type="text"
@@ -540,13 +489,23 @@ function Visor() {
               className="form-control"
               name="fecha"
               onChange={handleChange}
+              placeholder={new Date().toLocaleDateString()}
               value={
                 frameworkSeleccionado && frameworkSeleccionado.desarrollador
               }
             />
             <br />
-            
+            <label>Organizador: </label>
             <br />
+            <input
+              type="text"
+              className="form-control"
+              name="organizador"
+              onChange={handleChange}
+              value={
+                frameworkSeleccionado && frameworkSeleccionado.desarrollador
+              }
+            />
           </div>
         </ModalBody>
         <ModalFooter>
@@ -565,7 +524,7 @@ function Visor() {
 
       <Modal isOpen={modalEliminar}>
         <ModalBody>
-          ¿Estás seguro que deseas eliminar el eliminar estos datos?{" "}
+          ¿Estás seguro que deseas eliminar el prospecto de{" "}
           {frameworkSeleccionado && frameworkSeleccionado.nombre}?
         </ModalBody>
         <ModalFooter>
