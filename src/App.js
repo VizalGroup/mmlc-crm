@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import Login from './components/Login/Login';
 import Visor from './components/Visor/Visor';
+import NewProspectoPublico from './components/NewProspectoPublic/NewProspectoPublico';
 
 const PrivateRoute = ({ element }) => {
   // Usa un estado para rastrear si el usuario ha iniciado sesión o no.
@@ -25,6 +26,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/visor" element={<PrivateRoute element={<Visor />} />} />
+        <Route path="/sumate" element={<NewProspectoPublico />}/>
       </Routes>
     </div>
   );
