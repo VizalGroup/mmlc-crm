@@ -12,11 +12,11 @@ function FrameworkModal() {
     id: "",
     nombre: "",
     plan: "",
-   localidad: "",
+    localidad: "",
     telefono: "",
     redSocial: "",
     fecha: "",
-    organizador:'',
+    organizador: "",
   });
 
   const handleChange = (e) => {
@@ -41,7 +41,7 @@ function FrameworkModal() {
 
   const peticionPost = async () => {
     const f = new FormData();
-    
+
     for (let prop in frameworkSeleccionado) {
       f.append(prop, frameworkSeleccionado[prop]);
     }
@@ -56,21 +56,25 @@ function FrameworkModal() {
     }
   };
 
-    const peticionPut = async () => {
+  const peticionPut = async () => {
     const f = new FormData();
     f.append("nombre", frameworkSeleccionado.nombre);
     f.append("plan", frameworkSeleccionado.plan);
     f.append("telefono", frameworkSeleccionado.telefono);
-    f.append("email", frameworkSeleccionado.email);
+    f.append("localidad", frameworkSeleccionado.localidad);
     f.append("redSocial", frameworkSeleccionado.redSocial);
     f.append("fecha", frameworkSeleccionado.fecha);
     f.append("organizador", frameworkSeleccionado.organizador); // Actualiza el organizador aquí
     f.append("METHOD", "PUT");
-  
+
     try {
-      const response = await axios.post(baseUrl, f, { params: { id: frameworkSeleccionado.id } });
+      const response = await axios.post(baseUrl, f, {
+        params: { id: frameworkSeleccionado.id },
+      });
       const dataNueva = data.map((framework) =>
-        framework.id === frameworkSeleccionado.id ? frameworkSeleccionado : framework
+        framework.id === frameworkSeleccionado.id
+          ? frameworkSeleccionado
+          : framework
       );
       setData(dataNueva);
       abrirCerrarModalEditar();
@@ -79,9 +83,8 @@ function FrameworkModal() {
     }
   };
   return (
-
     <>
-    <button
+      <button
         className="btn btn-outline-warning"
         style={{ marginRight: "10px", marginBottom: "10px" }}
         onClick={abrirCerrarModalInsertar}
@@ -119,12 +122,12 @@ function FrameworkModal() {
               onChange={handleChange}
             />
             <br />
-            <label>Email: </label>
+            <label>localidad: </label>
             <br />
             <input
               type="text"
               className="form-control"
-              name="email"
+              name="localidad"
               onChange={handleChange}
             />
             <br />
@@ -146,7 +149,7 @@ function FrameworkModal() {
               onChange={handleChange}
             />
             <br />
-            
+
             <br />
           </div>
         </ModalBody>
@@ -165,12 +168,15 @@ function FrameworkModal() {
       </Modal>
 
       <Modal isOpen={modalEditar}>
-//         <ModalHeader>Editar Form</ModalHeader>
-//         <ModalBody>
-//           <div className="form-group">
-//             <label>Nombre: </label>
-//             <br />
-//             <input
+        // <ModalHeader>Editar Form</ModalHeader>
+        //{" "}
+        <ModalBody>
+          //{" "}
+          <div className="form-group">
+            // <label>Nombre: </label>
+            // <br />
+            //{" "}
+            <input
               type="text"
               className="form-control"
               name="nombre"
@@ -179,8 +185,9 @@ function FrameworkModal() {
             />
             <br />
             <label>Plan: </label>
-//             <br />
-//             <input
+            // <br />
+            //{" "}
+            <input
               type="text"
               className="form-control"
               name="plan"
@@ -198,16 +205,14 @@ function FrameworkModal() {
               value={frameworkSeleccionado && frameworkSeleccionado.telefono}
             />
             <br />
-            <label>Email: </label>
+            <label>localidad: </label>
             <br />
             <input
               type="text"
               className="form-control"
-              name="email"
+              name="localidad"
               onChange={handleChange}
-              value={
-                frameworkSeleccionado && frameworkSeleccionado.email
-              }
+              value={frameworkSeleccionado && frameworkSeleccionado.localidad}
             />
             <br />
             <label>Red Social: </label>
@@ -217,9 +222,7 @@ function FrameworkModal() {
               className="form-control"
               name="redSocial"
               onChange={handleChange}
-              value={
-                frameworkSeleccionado && frameworkSeleccionado.redSocial
-              }
+              value={frameworkSeleccionado && frameworkSeleccionado.redSocial}
             />
             <br />
             <label>Fecha: </label>
@@ -229,12 +232,9 @@ function FrameworkModal() {
               className="form-control"
               name="fecha"
               onChange={handleChange}
-              value={
-                frameworkSeleccionado && frameworkSeleccionado.fecha
-              }
+              value={frameworkSeleccionado && frameworkSeleccionado.fecha}
             />
             <br />
-            
             <br />
           </div>
         </ModalBody>
@@ -250,13 +250,10 @@ function FrameworkModal() {
             Cancelar
           </button>
         </ModalFooter>
-//       </Modal>
-
-     
+        //{" "}
+      </Modal>
     </>
   );
 }
-
-
 
 export default FrameworkModal;
