@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import DataTable from "../DataTable/DataTable";
 import FilterOrganizer from "../FilterOrganizer/FilterOrganizer";
 import Pagination from "../Pagination/Pagination";
-import FrameworkModal from "../FrameworkModal/FrameworkModal";
+import ContactModal from "../ContactModal/ContactModal";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
 
@@ -156,7 +156,7 @@ function Visor() {
     <div style={{ textAlign: "center" }}>
       <br />
 
-           <FrameworkModal   isOpenInsertar={modalInsertar}
+           <ContactModal   isOpenInsertar={modalInsertar}
   isOpenEditar={modalEditar}
   isOpenEliminar={modalEliminar}
   closeModalInsertar={() => setModalInsertar(false)}
