@@ -5,7 +5,6 @@ import Pagination from "../Pagination/Pagination";
 import ContactModal from "../ContactModal/ContactModal";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
-
 import axios from "axios";
 
 function Visor() {
@@ -19,7 +18,7 @@ function Visor() {
     nombre: "",
     plan: "",
     localidad: "",
-    telefono:'',
+    telefono: "",
     redSocial: "",
     fecha: "",
     organizador: "",
@@ -33,7 +32,6 @@ function Visor() {
     setSelectedOrganizerForSelectedItems,
   ] = useState("");
 
-
   const [organizersList, setOrganizersList] = useState([]);
   const assignOrganizerToSelectedItems = async () => {
     const updatedData = data.map((framework) => {
@@ -46,17 +44,30 @@ function Visor() {
       return framework;
     });
 
-    // Actualiza el estado local
+    // Actualiza la base de datos utilizando la función 'peticionPut'
+    for (const frameworkToUpdate of updatedData) {
+      if (selectedItems.includes(frameworkToUpdate.id)) {
+        await peticionPut(frameworkToUpdate);
+      }
+    }
+
+    // Actualiza el estado local después de la actualización en la base de datos
     setData(updatedData);
     setSelectedOrganizerForSelectedItems("");
     setSelectedItems([]);
+  };
 
-    // Realiza la llamada a la API para actualizar la base de datos
+  const peticionPut = async (frameworkToUpdate) => {
+    const f = new FormData();
+    for (let prop in frameworkToUpdate) {
+      f.append(prop, frameworkToUpdate[prop]);
+    }
+    f.append("METHOD", "PUT");
+
     try {
-      const response = await axios.put(baseUrl + "update", {
-        data: updatedData,
-      }); // Ajusta la URL de la API
-      console.log(response); // Verifica la respuesta en la consola
+      const response = await axios.post(baseUrl, f, {
+        params: { id: frameworkToUpdate.id },
+      });
     } catch (error) {
       console.log(error);
     }
@@ -156,13 +167,14 @@ function Visor() {
     <div style={{ textAlign: "center" }}>
       <br />
 
-           <ContactModal   isOpenInsertar={modalInsertar}
-  isOpenEditar={modalEditar}
-  isOpenEliminar={modalEliminar}
-  closeModalInsertar={() => setModalInsertar(false)}
-  closeModalEditar={() => setModalEditar(false)}
-  closeModalEliminar={() => setModalEliminar(false)}
-  />
+      <ContactModal
+        isOpenInsertar={modalInsertar}
+        isOpenEditar={modalEditar}
+        isOpenEliminar={modalEliminar}
+        closeModalInsertar={() => setModalInsertar(false)}
+        closeModalEditar={() => setModalEditar(false)}
+        closeModalEliminar={() => setModalEliminar(false)}
+      />
       <button
         className="btn btn-dark"
         onClick={shareSelectedViaWhatsApp}
@@ -189,9 +201,7 @@ function Visor() {
           justifyContent: "space-between",
           margin: "20px 0",
         }}
-      >
-        
-      </div>
+      ></div>
       <div
         style={{ display: "flex", alignItems: "center", marginBottom: "20px" }}
       >
@@ -220,29 +230,19 @@ function Visor() {
         </button>
       </div>
 
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "flex-end", // Align items on the right
-          marginBottom: "20px",
-        }}
-      >
-        {/* Pagination component */}
-        <Pagination
-          currentPage={currentPage}
-          setCurrentPage={setCurrentPage}
-          data={data}
-          selectedOrganizer={selectedOrganizer}
-          selectedOrganizerDetails={selectedOrganizerDetails}
-        />
-      </div>
       <FilterOrganizer
         handleOrganizerSelect={handleOrganizerSelect}
         getUniqueOrganizers={getUniqueOrganizers}
       />
 
       {/* ... Other UI elements ... */}
+      <Pagination
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        data={data}
+        selectedOrganizer={selectedOrganizer}
+        selectedOrganizerDetails={selectedOrganizerDetails}
+      />
 
       <DataTable
         data={data}
@@ -253,8 +253,6 @@ function Visor() {
         selectedOrganizerDetails={selectedOrganizerDetails}
         currentPage={currentPage}
       />
-
- 
     </div>
   );
 }
