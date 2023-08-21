@@ -220,19 +220,29 @@ function Visor() {
         </button>
       </div>
 
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "flex-end", // Align items on the right
+          marginBottom: "20px",
+        }}
+      >
+        {/* Pagination component */}
+        <Pagination
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          data={data}
+          selectedOrganizer={selectedOrganizer}
+          selectedOrganizerDetails={selectedOrganizerDetails}
+        />
+      </div>
       <FilterOrganizer
         handleOrganizerSelect={handleOrganizerSelect}
         getUniqueOrganizers={getUniqueOrganizers}
       />
 
       {/* ... Other UI elements ... */}
-      <Pagination
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-        data={data}
-        selectedOrganizer={selectedOrganizer}
-        selectedOrganizerDetails={selectedOrganizerDetails}
-      />
 
       <DataTable
         data={data}

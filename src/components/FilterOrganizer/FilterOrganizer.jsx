@@ -2,9 +2,10 @@ import React from "react";
 
 function FilterOrganizer({ handleOrganizerSelect, getUniqueOrganizers }) {
   return (
-    <div style={{ display: "flex", justifyContent: "center" }}>
+    <div class="p-3 mb-2 bg-warning text-emphasis-dark">
+    <div class="btn-group" role="group"  aria-label="Basic mixed styles example" style={{ display: "flex", justifyContent: "center" }}>
       <button
-        className="btn btn-outline-primary m-2"
+        className="btn btn-light btn-block"for="btnradio1"
         onClick={() => handleOrganizerSelect("")}
       >
         Mostrar Todos
@@ -12,12 +13,13 @@ function FilterOrganizer({ handleOrganizerSelect, getUniqueOrganizers }) {
       {getUniqueOrganizers().map((organizer) => (
         <button
           key={organizer}
-          className="btn btn-outline-primary m-2"
+          className="btn btn-light btn-block "for="btnradio1"
           onClick={() => handleOrganizerSelect(organizer)}
         >
           {organizer}
         </button>
       ))}
+    </div>
     </div>
   );
 }
