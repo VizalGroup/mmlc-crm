@@ -123,6 +123,7 @@ function DataTable({
               onChange={handleChange}
               value={frameworkSeleccionado.nombre}
             />
+            <br />
             <label>Plan: </label>
             <input
               type="text"
@@ -131,6 +132,7 @@ function DataTable({
               onChange={handleChange}
               value={frameworkSeleccionado.plan}
             />
+            <br />
             <label>Telefono: </label>
             <input
               type="text"
@@ -139,14 +141,16 @@ function DataTable({
               onChange={handleChange}
               value={frameworkSeleccionado.telefono}
             />
-            <label>Email: </label>
+            <br />
+            <label>Localidad: </label>
             <input
               type="text"
               className="form-control"
-              name="email"
+              name="localidad"
               onChange={handleChange}
-              value={frameworkSeleccionado.email}
+              value={frameworkSeleccionado.localidad}
             />
+            <br />
             <label>Red Social: </label>
             <input
               type="text"
@@ -155,6 +159,7 @@ function DataTable({
               onChange={handleChange}
               value={frameworkSeleccionado.redSocial}
             />
+            <br />
             <label>Fecha: </label>
             <input
               type="text"
@@ -163,14 +168,15 @@ function DataTable({
               onChange={handleChange}
               value={frameworkSeleccionado.fecha}
             />
+            <br />
           </div>
         </ModalBody>
         <ModalFooter>
-          <button className="btn btn-primary" onClick={() => peticionPut()}>
+          <button className="btn btn-warning" onClick={() => peticionPut()}>
             Editar
           </button>
           <button
-            className="btn btn-danger"
+            className="btn btn-dark"
             onClick={toggleModalEditar}
           >
             Cancelar

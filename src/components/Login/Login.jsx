@@ -12,7 +12,7 @@ function Login() {
   const handleLogin = () => {
     if (username === expectedUsername && password === expectedPassword) {
       setLoginError(false);
-      localStorage.setItem('username', username);
+      localStorage.setItem("username", username);
       window.location.href = "/visor";
     } else {
       setLoginError(true);
@@ -60,8 +60,8 @@ function Login() {
           </div>
         )}
         <div id="passwordHelpBlock" class="form-text">
-          Your password must be 8-20 characters long, contain letters and
-          numbers, and must not contain spaces, special characters, or emoji.
+          En caso de no poder iniciar sesión correctamente comunicarse a
+          vizalgroup0@gmail.com.
         </div>
       </div>
 

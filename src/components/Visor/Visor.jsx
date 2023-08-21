@@ -4,8 +4,8 @@ import FilterOrganizer from "../FilterOrganizer/FilterOrganizer";
 import Pagination from "../Pagination/Pagination";
 import ContactModal from "../ContactModal/ContactModal";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Link } from "react-router-dom";
 import axios from "axios";
+import Logout from "../Logout/Logout";
 
 function Visor() {
   const baseUrl = "http://localhost/crmcrud/";
@@ -71,19 +71,6 @@ function Visor() {
     } catch (error) {
       console.log(error);
     }
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFrameworkSeleccionado((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-    console.log(frameworkSeleccionado);
-  };
-
-  const abrirCerrarModalInsertar = () => {
-    setModalInsertar(!modalInsertar);
   };
 
   const abrirCerrarModalEditar = () => {
@@ -183,14 +170,7 @@ function Visor() {
       >
         Compartir seleccionados via WhatsApp
       </button>
-      <Link style={{ textDecoration: "none" }} to="/">
-        <button
-          className="btn btn-warning"
-          style={{ marginLeft: "10px", marginBottom: "10px" }}
-        >
-          Logout
-        </button>
-      </Link>
+      <Logout/>
       <br />
       <br />
       <br />
@@ -235,7 +215,6 @@ function Visor() {
         getUniqueOrganizers={getUniqueOrganizers}
       />
 
-      {/* ... Other UI elements ... */}
       <Pagination
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
