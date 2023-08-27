@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import enfoque from "../../Img/enfoque.png";
 import loginConfig from "./credentials";
+import { useNavigate } from "react-router-dom";
 
 function Login() {
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loginError, setLoginError] = useState(false);
@@ -13,7 +15,7 @@ function Login() {
     if (username === expectedUsername && password === expectedPassword) {
       setLoginError(false);
       localStorage.setItem("username", username);
-      window.location.href = "/visor";
+      navigate("/visor");
     } else {
       setLoginError(true);
     }

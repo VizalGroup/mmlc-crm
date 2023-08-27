@@ -8,7 +8,7 @@ import axios from "axios";
 import Logout from "../Logout/Logout";
 
 function Visor() {
-  const baseUrl = "http://localhost/crmcrud/";
+  const baseUrl = "https://gestionenfoque.online/crmcrud/";
   const [data, setData] = useState([]);
   const [modalInsertar, setModalInsertar] = useState(false);
   const [modalEditar, setModalEditar] = useState(false);

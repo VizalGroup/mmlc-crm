@@ -3,7 +3,7 @@ import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import axios from "axios";
 
 function ContactModal() {
-  const baseUrl = "http://localhost/crmcrud/";
+  const baseUrl = "https://gestionenfoque.online/crmcrud/";
   const [data, setData] = useState([]);
   const [modalInsertar, setModalInsertar] = useState(false);
   const [contactSeleccionado, setcontactSeleccionado] = useState({
@@ -57,6 +57,7 @@ function ContactModal() {
     try {
       const response = await axios.post(baseUrl, f);
       console.log("Response:", response.data);
+      window.location.href = "/visor";
       abrirCerrarModalInsertar();
     } catch (error) {
       console.log("Error:", error);
@@ -87,8 +88,6 @@ function ContactModal() {
 
     return formattedNumber;
   }
-
-  
 
   return (
     <>

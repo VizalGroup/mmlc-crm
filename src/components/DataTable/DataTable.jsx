@@ -26,7 +26,7 @@ function DataTable({
     fecha: "",
     organizador: "",
   });
-  const baseUrl = "http://localhost/crmcrud/";
+  const baseUrl = "https://gestionenfoque.online/crmcrud/";
 
   const abrirCerrarModalEditar = () => {
     setModalEditar(!modalEditar);
@@ -53,11 +53,10 @@ function DataTable({
     f.append("METHOD", "PUT");
 
     try {
-      const response = await axios.post(
-        baseUrl,
-        f,
-        { params: { id: frameworkSeleccionado.id } }
-      );
+      const response = await axios.post(baseUrl, f, {
+        params: { id: frameworkSeleccionado.id },
+      });
+      window.location.href = "/visor";
       abrirCerrarModalEditar();
     } catch (error) {
       console.log(error);
@@ -112,7 +111,7 @@ function DataTable({
         </tbody>
       </table>
       <Modal isOpen={modalEditar} toggle={toggleModalEditar}>
-        <ModalHeader>Editar Formulario</ModalHeader>
+        <ModalHeader>Editar Contacto</ModalHeader>
         <ModalBody>
           <div className="form-group">
             <label>Nombre: </label>
@@ -169,16 +168,22 @@ function DataTable({
               value={frameworkSeleccionado.fecha}
             />
             <br />
+            <label>Organizador: </label>
+            <input
+              type="text"
+              className="form-control"
+              name="organizador"
+              onChange={handleChange}
+              value={frameworkSeleccionado.organizador}
+            />
+            <br />
           </div>
         </ModalBody>
         <ModalFooter>
           <button className="btn btn-warning" onClick={() => peticionPut()}>
             Editar
           </button>
-          <button
-            className="btn btn-dark"
-            onClick={toggleModalEditar}
-          >
+          <button className="btn btn-dark" onClick={toggleModalEditar}>
             Cancelar
           </button>
         </ModalFooter>
