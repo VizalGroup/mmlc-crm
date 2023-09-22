@@ -171,6 +171,14 @@ function Visor() {
         Compartir seleccionados via WhatsApp
       </button>
       <Logout/>
+      <a href="/configlotterynumber">
+      <button
+        className="btn btn-dark"
+        style={{ marginLeft: "10px", marginBottom: "10px" }}
+        >
+        Ganador de lotería
+      </button>
+        </a>
       <br />
       <br />
       <br />
