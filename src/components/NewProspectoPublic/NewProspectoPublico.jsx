@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import flyer1 from "../../Img/flyer1.jpeg";
 import flyer2 from "../../Img/flyer2.jpeg";
+import flyer3 from "../../Img/flyer3.jpeg"
+import flyer4 from "../../Img/flyer4.jpeg"
+
 import axios from "axios";
 
 const Formulario = () => {
@@ -35,47 +38,30 @@ const Formulario = () => {
   const opcionesContacto = ["Facebook", "Instagram", "Otros"];
   const opcionesPlan = [
     {
-      nombre: "Plan Hogar Premium",
+      nombre: "Plan Enfoque",
       descripcion: (
         <span className="text-muted small">
-          Incluye 11 electrodomésticos para equipar tu hogar con la más alta
-          calidad.
+          ✈️ Ahorra para tus próximas aventuras y viajes inolvidables con
+          nuestro plan enfoque, pensado especialmente para tu próximo viaje.
         </span>
       ),
     },
     {
-      nombre: "Plan Hogar Básico",
+      nombre: "Plan Electro",
       descripcion: (
         <span className="text-muted small">
-          Contiene 5 electrodomésticos de primera necesidad para asegurar tu
-          comodidad en casa.
+          ⚡️ Adquiere la mejor planificación financiera para los
+          electrodomésticos necesarios y convierte tu casa en un verdadero
+          hogar.
         </span>
       ),
     },
     {
-      nombre: "Plan Auto",
+      nombre: "Plan Proyecto",
       descripcion: (
         <span className="text-muted small">
-          Ofrece cobertura integral para tu vehículo, brindándote tranquilidad
-          en cada viaje.
-        </span>
-      ),
-    },
-    {
-      nombre: "Plan Dinero en Efectivo",
-      descripcion: (
-        <span className="text-muted small">
-          Accede a dinero en efectivo para imprevistos, con flexibilidad en los
-          plazos de pago.
-        </span>
-      ),
-    },
-    {
-      nombre: "Plan Vivienda",
-      descripcion: (
-        <span className="text-muted small">
-          Protege tu inversión más grande con un plan que cuida de tu hogar y su
-          contenido.
+          🏗️ Materializa tus proyectos y metas ahorrando de manera efectiva en
+          materiales de construcción con nuestro Plan Proyecto.
         </span>
       ),
     },
@@ -83,8 +69,17 @@ const Formulario = () => {
       nombre: "Plan Moto",
       descripcion: (
         <span className="text-muted small">
-          Cobertura completa para tu motocicleta, garantizando tu movilidad con
-          seguridad.
+          🏍️ Asegura tu movilidad y ahorra al mismo tiempo con nuestro Plan
+          Moto, diseñado para adaptarse a tus capacidades financieras.
+        </span>
+      ),
+    },
+    {
+      nombre: "Plan Bicicleta",
+      descripcion: (
+        <span className="text-muted small">
+          🚴‍♂️ Contribuye a tu bienestar y al medio ambiente mientras ahorras con
+          nuestro Plan Bicicleta.
         </span>
       ),
     },
@@ -138,16 +133,20 @@ const Formulario = () => {
 
   return (
     <div className="container">
+      
+          <h2 className="mb-2" style={{textAlign: 'center'}}>¡Sumate a los planes de ahorro en Enfoque!</h2>
+          <br />
       <div className="row align-items-center justify-content-center">
-        {/* <div className="col-md-3 mb-4">
+        <div className="col-md-3 mb-4">
           <img src={flyer1} alt="Imagen Izquierda" className="img-fluid" />
-        </div> */}
+          <img style={{marginTop: '3vh'}} src={flyer3} alt="Imagen Izquierda" className="img-fluid" />
+        </div>
+
         <div className="col-md-6">
-          <h2 className="mb-2">Formulario</h2>
           <p className="mb-4">
-            Completa este formulario y uno de nuestros prnpmoductores se
-            comunicará contigo para asesorarte en todo lo relacionado con los
-            planes en los que estés interesado.
+            Completa este formulario y uno de nuestros productores se comunicará
+            contigo para asesorarte en todo lo relacionado con los planes en los
+            que estés interesado.
           </p>
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
@@ -238,14 +237,16 @@ const Formulario = () => {
               ))}
             </div>
 
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" className="btn btn-primary" style={{marginBottom: '5px'}}>
               Enviar
             </button>
           </form>
         </div>
-        {/* <div className="col-md-3 mb-4">
+        <div className="col-md-3 mb-4">
           <img src={flyer2} alt="Imagen Derecha" className="img-fluid" />
-        </div> */}
+          <img style={{marginTop: '3vh'}} src={flyer4} alt="Imagen Derecha" className="img-fluid" />
+
+        </div>
       </div>
     </div>
   );

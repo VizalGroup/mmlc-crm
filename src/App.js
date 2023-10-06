@@ -3,6 +3,7 @@ import { Route, Routes, Navigate } from 'react-router-dom';
 import Login from './components/Login/Login';
 import Visor from './components/Visor/Visor';
 import NewProspectoPublico from './components/NewProspectoPublic/NewProspectoPublico';
+import LotteryResultConfig from './components/LotteryResultConfig/LotteryResultConfig';
 
 const PrivateRoute = ({ element }) => {
   // Usa un estado para rastrear si el usuario ha iniciado sesión o no.
@@ -27,6 +28,7 @@ function App() {
         <Route path="/" element={<Login />} />
         <Route path="/visor" element={<PrivateRoute element={<Visor />} />} />
         <Route path="/sumate" element={<NewProspectoPublico />}/>
+        <Route path="/configlotterynumber" element={<LotteryResultConfig/>}/>
       </Routes>
     </div>
   );
