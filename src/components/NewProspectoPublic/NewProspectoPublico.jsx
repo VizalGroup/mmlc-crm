@@ -10,7 +10,7 @@ const Formulario = () => {
   const [contacto, setContacto] = useState("");
   const [plan, setPlan] = useState([]);
   const [selectedContactOption, setSelectedContactOption] = useState("");
-  const baseUrl = "http://localhost/crmcrud/";
+  const baseUrl = "https://gestionenfoque.online/crmcrud/";
   const [data, setData] = useState([]);
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -139,9 +139,9 @@ const Formulario = () => {
   return (
     <div className="container">
       <div className="row align-items-center justify-content-center">
-        <div className="col-md-3 mb-4">
+        {/* <div className="col-md-3 mb-4">
           <img src={flyer1} alt="Imagen Izquierda" className="img-fluid" />
-        </div>
+        </div> */}
         <div className="col-md-6">
           <h2 className="mb-2">Formulario</h2>
           <p className="mb-4">
@@ -243,9 +243,9 @@ const Formulario = () => {
             </button>
           </form>
         </div>
-        <div className="col-md-3 mb-4">
+        {/* <div className="col-md-3 mb-4">
           <img src={flyer2} alt="Imagen Derecha" className="img-fluid" />
-        </div>
+        </div> */}
       </div>
     </div>
   );
